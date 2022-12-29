@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Comments from "../../../components/Comments";
 import PrimaryButton from "../../../components/PrimaryButton";
 
 const MostPopularDetails = ({ post }) => {
-  const { name, postDetails, picture, photoURL, publishedDate } = post;
+  const { _id, name, postDetails, picture, photoURL, publishedDate, reaction } =
+    post;
   return (
-    <div className="card bg-base-100 shadow-xl">
-      {/* <div className="flex justify-end px-4 pt-4"> */}
+    <div className="card bg-base-100 shadow-xl p-3 my-5">
       <div className="flex gap-2 items-center">
         <img
           className="w-11 h-11 rounded-full shadow-lg"
@@ -24,11 +26,26 @@ const MostPopularDetails = ({ post }) => {
         <p>{postDetails}</p>
       </div>
       <div className="card-actions flex justify-end pr-4 pb-3">
-        <PrimaryButton classes="p-2 b rounded-xl">Details</PrimaryButton>
+        <PrimaryButton classes="p-2 b rounded-xl">
+          <Link to={`/posts/${_id}`}>Details</Link>
+        </PrimaryButton>
       </div>
       <figure>
         <img className="" src={picture} alt="Shoes" />
       </figure>
+
+      <div className="flex gap-4 my-4">
+        <button className="btn bg-blue-500 hover:bg-blue-700 border-none">
+          <span className="mr-2">{reaction}</span> Like
+        </button>
+        <button className="btn bg-pink-500 hover:bg-pink-700 border-none">
+          Love
+        </button>
+        <button className="btn bg-cyan-500 hover:bg-cyan-700 border-none">
+          Care
+        </button>
+      </div>
+      <Comments />
     </div>
   );
 };

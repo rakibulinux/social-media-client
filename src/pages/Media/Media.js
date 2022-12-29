@@ -25,7 +25,7 @@ const Media = () => {
       headers: {
         authorization: `bearer ${localStorage.getItem("socialUserToken")}`,
       },
-      body: JSON.stringify({ reaction: newReaction }),
+      body: JSON.stringify("id"),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -41,12 +41,13 @@ const Media = () => {
     return <Spinner />;
   }
   return (
-    <div className="grid grid-flow-row gap-5 w-7/12 mx-auto">
+    <div className="grid grid-flow-row gap-5 w-7/12 mx-auto  my-5">
       {posts?.map((post) => (
         <MediaShow
           key={post._id}
           post={post}
           increaseReaction={increaseReaction}
+          newReaction={newReaction}
           handleReactionUpdate={handleReactionUpdate}
         />
       ))}

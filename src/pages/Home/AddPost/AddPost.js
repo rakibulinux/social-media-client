@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../../../components/PrimaryButton";
 import { FaPenNib } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
@@ -11,13 +11,9 @@ const AddPost = () => {
   const { user, isLoading } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_IMG_BB_KEY;
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
   const date = format(new Date(), "PP");
   const handleAddPost = (data) => {
     console.log(data);

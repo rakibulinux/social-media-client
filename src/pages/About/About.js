@@ -6,7 +6,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const About = () => {
   const { user } = useContext(AuthContext);
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 my-4">
       <div className="flex justify-end px-4 pt-4">
         <PrimaryButton classes="py-2 px-4 rounded-xl">Edit</PrimaryButton>
       </div>
@@ -19,6 +19,7 @@ const About = () => {
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
           {user?.displayName}
         </h5>
+        <p>Email: {user?.email}</p>
         <span className="text-sm text-gray-500 dark:text-gray-400">
           University: Visual Designer
         </span>

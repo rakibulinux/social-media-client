@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import Comments from "../../components/Comments";
 import PrimaryButton from "../../components/PrimaryButton";
 
-const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
+const MediaShow = ({
+  post,
+  handleReactionUpdate,
+  increaseReaction,
+  newReaction,
+}) => {
   const { _id, name, postDetails, picture, photoURL, publishedDate, reaction } =
     post;
   return (
-    <div className="card bg-base-100 shadow-xl">
+    <div className="card bg-base-100 shadow-xl p-3">
       {/* <div className="flex justify-end px-4 pt-4"> */}
       <div className="flex gap-2 items-center">
         <img
@@ -43,7 +48,7 @@ const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
           }}
           className="btn bg-blue-500 hover:bg-blue-700 border-none"
         >
-          <span className="mr-2">{reaction}</span> Like
+          <span className="mr-2">{newReaction}</span> Like
         </button>
         <button className="btn bg-pink-500 hover:bg-pink-700 border-none">
           Love
