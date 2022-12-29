@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Comments from "../../components/Comments";
 import PrimaryButton from "../../components/PrimaryButton";
 
-const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
+const PostDetails = () => {
+  const post = useLoaderData();
   const { _id, name, postDetails, picture, photoURL, publishedDate, reaction } =
     post;
   return (
@@ -27,9 +28,9 @@ const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
         <p>{postDetails}</p>
       </div>
       <div className="card-actions flex justify-end pr-4 pb-3">
-        <PrimaryButton classes="p-2 b rounded-xl">
-          <Link to={`/posts/${_id}`}>Details</Link>
-        </PrimaryButton>
+        <Link to={`/posts/${_id}`}>
+          <PrimaryButton classes="p-2 b rounded-xl">Details</PrimaryButton>
+        </Link>
       </div>
       <figure>
         <img className="" src={picture} alt="Shoes" />
@@ -37,10 +38,10 @@ const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
 
       <div className="flex gap-4 my-4">
         <button
-          onClick={() => {
-            increaseReaction(reaction);
-            handleReactionUpdate(_id);
-          }}
+          //   onClick={() => {
+          //     increaseReaction(reaction);
+          //     handleReactionUpdate(_id);
+          //   }}
           className="btn bg-blue-500 hover:bg-blue-700 border-none"
         >
           <span className="mr-2">{reaction}</span> Like
@@ -57,4 +58,4 @@ const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
   );
 };
 
-export default MediaShow;
+export default PostDetails;

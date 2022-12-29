@@ -7,6 +7,7 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Media from "../pages/Media/Media";
 import Messages from "../pages/Messages/Messages";
+import PostDetails from "../pages/PostDetails/PostDetails";
 import Profile from "../pages/Profile/Profile";
 import Register from "../pages/Register/Register";
 import Settings from "../pages/Settings/Settings";
@@ -28,6 +29,12 @@ const router = createBrowserRouter([
       {
         path: "/media",
         element: <Media />,
+      },
+      {
+        path: "/posts/:id",
+        element: <PostDetails />,
+        loader: ({ params }) =>
+          fetch(`${process.env.REACT_APP_API_URL}/posts/${params.id}`),
       },
       {
         path: "/messages",

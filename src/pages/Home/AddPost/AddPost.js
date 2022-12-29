@@ -103,11 +103,12 @@ const AddPost = () => {
         </label>
         <input
           {...register("image", { required: true })}
-          type="file"
           id="image"
           name="image"
           accept="image/*"
           required
+          type="file"
+          className="file-input file-input-bordered file-input-success hover:text-gray-100 bg-gradient-to-r from-cyan-500 to-sky-600 text-white w-full max-w-xs"
         />
       </div>
       <PrimaryButton
