@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Friends from "../pages/Friends/Friends";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
+import Media from "../pages/Media/Media";
 import Messages from "../pages/Messages/Messages";
 import Profile from "../pages/Profile/Profile";
 import Register from "../pages/Register/Register";
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/media",
+        element: <Media />,
       },
       {
         path: "/messages",

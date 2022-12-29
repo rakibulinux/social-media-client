@@ -21,8 +21,8 @@ const AddPost = () => {
   const date = format(new Date(), "PP");
   const handleAddPost = (data) => {
     console.log(data);
-    const addPost = data.addPost;
-    // console.log(addPost);
+    const postDetails = data.postDetails;
+    // console.log(postDetails);
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -36,10 +36,12 @@ const AddPost = () => {
         if (imgData.success) {
           toast.success("Image upload success");
           const post = {
-            addPost,
-            publishedDate: date,
+            name: user?.displayName,
+            photoURL: user?.photoURL,
             email: user?.email,
+            postDetails,
             picture: imgData.data.url,
+            publishedDate: date,
           };
           // Update in database
           fetch(`${process.env.REACT_APP_API_URL}/add-post`, {
@@ -85,9 +87,9 @@ const AddPost = () => {
           />
         </figure>
         <textarea
-          {...register("addPost", { require: true })}
+          {...register("postDetails", { require: true })}
           type="text"
-          name="addPost"
+          name="postDetails"
           id="post"
           cols="30"
           rows="5"
