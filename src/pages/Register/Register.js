@@ -129,6 +129,20 @@ const Register = () => {
               />
             </div>
             <div>
+              <label htmlFor="address" className="block mb-2 text-sm">
+                Address
+              </label>
+              <input
+                required
+                type="address"
+                name="address"
+                id="address"
+                placeholder="Enter Your Address Here"
+                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-cyan-500 bg-gray-200 text-gray-900"
+                data-temp-mail-org="0"
+              />
+            </div>
+            <div>
               <div className="flex justify-between mb-2">
                 <label htmlFor="password" className="text-sm">
                   Password

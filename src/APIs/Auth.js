@@ -1,9 +1,10 @@
-export const setAuthToken = (user, role) => {
+export const setAuthToken = (user, address) => {
   const currentUser = {
     name: user.displayName,
     picture: user.photoURL,
     email: user.email,
-    verify: false,
+
+    address: address,
   };
   console.log(user);
   // Save user is DB

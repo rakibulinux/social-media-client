@@ -8,12 +8,12 @@ const About = () => {
   return (
     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
       <div className="flex justify-end px-4 pt-4">
-        <PrimaryButton>Edit</PrimaryButton>
+        <PrimaryButton classes="py-2 px-4 rounded-xl">Edit</PrimaryButton>
       </div>
       <div className="flex flex-col items-center pb-10">
         <img
           className="w-24 h-24 mb-3 rounded-full shadow-lg"
-          src="/docs/images/people/profile-picture-3.jpg"
+          src={user?.photoURL}
           alt="Bonnie imag"
         />
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
