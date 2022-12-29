@@ -1,7 +1,7 @@
 import React from "react";
-import PrimaryButton from "../../components/PrimaryButton";
+import PrimaryButton from "../../../components/PrimaryButton";
 
-const MediaShow = ({ post }) => {
+const MostPopularDetails = ({ post }) => {
   const { name, postDetails, picture, photoURL, publishedDate } = post;
   return (
     <div className="card bg-base-100 shadow-xl">
@@ -33,4 +33,4 @@ const MediaShow = ({ post }) => {
   );
 };
 
-export default MediaShow;
+export default MostPopularDetails;
