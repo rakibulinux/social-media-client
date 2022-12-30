@@ -25,7 +25,7 @@ const Media = () => {
       headers: {
         authorization: `bearer ${localStorage.getItem("socialUserToken")}`,
       },
-      body: JSON.stringify("id"),
+      body: JSON.stringify(id),
     })
       .then((res) => res.json())
       .then((data) => {

@@ -8,7 +8,7 @@ const PostDetails = () => {
   const { _id, name, postDetails, picture, photoURL, publishedDate, reaction } =
     post;
   return (
-    <div className="card bg-base-100 shadow-xl">
+    <div className="card bg-base-100 shadow-xl my-3 p-2">
       {/* <div className="flex justify-end px-4 pt-4"> */}
       <div className="flex gap-2 items-center">
         <img
