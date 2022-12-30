@@ -16,21 +16,23 @@ const Media = () => {
       return data;
     },
   });
-  const [newReaction, setNewReaction] = useState(0);
-  const increaseReaction = (reaction) => setNewReaction(newReaction + reaction);
+  const [newReaction, setNewReaction] = useState(1);
+  const increaseReaction = () => setNewReaction(newReaction + 1);
 
   const handleReactionUpdate = (id) => {
     fetch(`${process.env.REACT_APP_API_URL}/update-post/${id}`, {
       method: "PATCH",
       headers: {
+        "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("socialUserToken")}`,
       },
-      body: JSON.stringify(id),
+      body: JSON.stringify({ newReaction }),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("Love react palce");
+
           refetch();
         }
       });
