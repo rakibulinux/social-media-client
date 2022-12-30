@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const { name, email, date, comment: description, picture } = comment;
   return (
     <div>
       <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
@@ -10,18 +11,14 @@ const Comment = () => {
             <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
               <img
                 className="mr-2 w-6 h-6 rounded-full"
-                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                alt="Michael Gough"
+                src={picture}
+                alt={name}
               />
-              Michael Gough
+              {name}
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              <time
-                pubdate="true"
-                dateTime="2022-02-08"
-                title="February 8th, 2022"
-              >
-                Feb. 8, 2022
+              <time pubdate="true" dateTime={date} title={date}>
+                {date}
               </time>
             </p>
           </div>
@@ -77,12 +74,7 @@ const Comment = () => {
             </ul>
           </div>
         </footer>
-        <p className="text-gray-500 dark:text-gray-400">
-          Very straight-to-point article. Really worth time reading. Thank you!
-          But tools are just the instruments for the UX designers. The knowledge
-          of the design tools are as important as the creation of the design
-          strategy.
-        </p>
+        <p className="text-gray-500 dark:text-gray-400">{description}</p>
         <div className="flex items-center mt-4 space-x-4">
           <button
             type="button"
@@ -107,7 +99,7 @@ const Comment = () => {
           </button>
         </div>
       </article>
-      <article className="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
+      {/* <article className="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
         <footer className="flex justify-between items-center mb-2">
           <div className="flex items-center">
             <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
@@ -407,7 +399,7 @@ const Comment = () => {
             Reply
           </button>
         </div>
-      </article>
+      </article> */}
     </div>
   );
 };
