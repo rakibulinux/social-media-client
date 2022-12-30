@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import Comments from "../../../components/Comments";
 import PrimaryButton from "../../../components/PrimaryButton";
 
-const MostPopularDetails = ({ post }) => {
+const MostPopularDetails = ({
+  post,
+  handleReactionUpdate,
+  increaseReaction,
+}) => {
   const { _id, name, postDetails, picture, photoURL, publishedDate, reaction } =
     post;
   return (
@@ -35,7 +39,13 @@ const MostPopularDetails = ({ post }) => {
       </figure>
 
       <div className="flex gap-4 my-4">
-        <button className="btn bg-blue-500 hover:bg-blue-700 border-none">
+        <button
+          onClick={() => {
+            increaseReaction();
+            handleReactionUpdate(_id);
+          }}
+          className="btn bg-blue-500 hover:bg-blue-700 border-none"
+        >
           <span className="mr-2">{reaction}</span> Like
         </button>
         <button className="btn bg-pink-500 hover:bg-pink-700 border-none">
