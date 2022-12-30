@@ -32,13 +32,11 @@ const Media = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("Love react palce");
-
           refetch();
         }
       });
   };
-  console.log(newReaction);
-  console.log(posts);
+
   if (isLoading) {
     return <Spinner />;
   }

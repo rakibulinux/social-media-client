@@ -12,7 +12,6 @@ const MostPopular = () => {
       return data;
     },
   });
-  console.log(posts);
   if (isLoading) {
     return <Spinner />;
   }

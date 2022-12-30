@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
@@ -9,13 +9,6 @@ import PrimaryButton from "./PrimaryButton";
 
 const Comments = () => {
   const { user } = useContext(AuthContext);
-  // const [getUser, setGetUser] = useState({});
-  // const { _id, name, email, picture } = getUser;
-  // useEffect(() => {
-  //   fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setGetUser(data));
-  // }, [user?.email]);
   const date = format(new Date(), "PP");
 
   const { register, handleSubmit } = useForm({
@@ -31,7 +24,6 @@ const Comments = () => {
       return data;
     },
   });
-  console.log(comments);
   const onSubmit = (data) => {
     const commentInfo = {
       name: user?.displayName,
@@ -40,7 +32,6 @@ const Comments = () => {
       picture: user.photoURL,
       comment: data?.comment,
     };
-    console.log(commentInfo);
 
     fetch(`${process.env.REACT_APP_API_URL}/comments`, {
       method: "POST",
@@ -52,7 +43,6 @@ const Comments = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         toast.success(`${user?.displayName} added a new comment`);
       });
   };

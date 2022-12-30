@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Comment = ({ comment }) => {
-  const { name, email, date, comment: description, picture } = comment;
+  const { name, date, comment: description, picture } = comment;
   return (
     <div>
       <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
