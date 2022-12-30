@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
-
+import { FaUserAlt } from "react-icons/fa";
 const Navbar = () => {
   const { user, logoutUserAccount } = useContext(AuthContext);
   const manueItems = (
@@ -13,15 +13,19 @@ const Navbar = () => {
       <li>
         <Link to="/media">Media</Link>
       </li>
-      <li>
-        <Link to="/messages">Messages</Link>
-      </li>
-      <li>
-        <Link to="/friends">Friends</Link>
-      </li>
-      <li>
-        <Link to="/about">About</Link>
-      </li>
+      {user?.uid && (
+        <>
+          <li>
+            <Link to="/messages">Messages</Link>
+          </li>
+          <li>
+            <Link to="/friends">Friends</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </>
+      )}
     </>
   );
   const logOut = () => {
@@ -37,7 +41,11 @@ const Navbar = () => {
         <>
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src={user?.photoURL} alt="profile img" />
+              {user ? (
+                <img src={user?.photoURL} alt="profile img" />
+              ) : (
+                <FaUserAlt />
+              )}
             </div>
           </label>
           <ul

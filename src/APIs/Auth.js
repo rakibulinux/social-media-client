@@ -1,12 +1,13 @@
-export const setAuthToken = (user, address) => {
+export const setAuthToken = (user, gender, address) => {
   const currentUser = {
     name: user.displayName,
     picture: user.photoURL,
     email: user.email,
-
-    address: address,
+    gender,
+    address,
   };
   console.log(user);
+  console.log(currentUser);
   // Save user is DB
   fetch(`${process.env.REACT_APP_API_URL}/users/${user?.email}`, {
     method: "PUT",

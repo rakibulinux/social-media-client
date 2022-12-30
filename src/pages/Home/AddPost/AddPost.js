@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PrimaryButton from "../../../components/PrimaryButton";
-import { FaPenNib } from "react-icons/fa";
+import { FaPenNib, FaUserAlt } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import Spinner from "../../../components/Spinner";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,7 @@ const AddPost = () => {
 
   const { register, handleSubmit } = useForm();
 
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const date = format(new Date(), "PP");
   const handleAddPost = (data) => {
     console.log(data);
@@ -54,7 +54,7 @@ const AddPost = () => {
             .then((data) => {
               console.log(data);
               toast.success(`${user?.displayName} added a new post`);
-              //   navigate("/");
+              navigate("/");
             });
         }
       });
@@ -75,12 +75,12 @@ const AddPost = () => {
         </>
       </div>
       <>
-        <figure className="avatar right-[18rem] top-14 w-8 h-8">
-          <img
-            src={user?.photoURL}
-            alt="icon"
-            className="shadow-sm rounded-full w-6 h-6"
-          />
+        <figure className="avatar right-[16rem] top-14 w-8 h-8">
+          {user ? (
+            <img src={user?.photoURL} alt="profile img" />
+          ) : (
+            <FaUserAlt />
+          )}
         </figure>
         <textarea
           {...register("postDetails", { require: true })}

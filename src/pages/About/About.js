@@ -1,28 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { FaUserAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PrimaryButton from "../../components/PrimaryButton";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const About = () => {
   const { user } = useContext(AuthContext);
+  const [getUser, setGetUser] = useState({});
+  const { _id, name, email, address, gender, picture, university } = getUser;
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/user/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setGetUser(data));
+  }, [user?.email]);
+  console.log(getUser);
   return (
     <div className="w-full bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 my-4">
       <div className="flex justify-end px-4 pt-4">
-        <PrimaryButton classes="py-2 px-4 rounded-xl">Edit</PrimaryButton>
+        <Link to={`/about/edit/${_id}`}>
+          <PrimaryButton classes="py-2 px-4 rounded-xl">Edit</PrimaryButton>
+        </Link>
       </div>
       <div className="flex flex-col items-center pb-10">
-        <img
-          className="w-24 h-24 mb-3 rounded-full shadow-lg"
-          src={user?.photoURL}
-          alt="Bonnie imag"
-        />
+        {user ? (
+          <img
+            className="w-24 h-24 mb-3 rounded-full shadow-lg"
+            src={picture}
+            alt="Bonnie imag"
+          />
+        ) : (
+          <FaUserAlt />
+        )}
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-          {user?.displayName}
+          {name}
         </h5>
-        <p>Email: {user?.email}</p>
-        <span className="text-sm text-gray-500 dark:text-gray-400">
-          University: Visual Designer
-        </span>
+        <p>
+          <span className="font-semibold">Email:</span> {email}
+        </p>
+        <p>
+          <span className="font-semibold">University:</span> {university}
+        </p>
+        <p>
+          <span className="font-semibold">Address:</span> {address}
+        </p>
+        <p>
+          <span className="font-semibold">Gender:</span> {gender}
+        </p>
         <div className="flex mt-4 space-x-3 md:mt-6">
           <Link
             href="#"

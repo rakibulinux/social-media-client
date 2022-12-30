@@ -6,7 +6,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { setAuthToken } from "../../APIs/Auth";
 
 const Register = () => {
-  const [role, setRole] = useState("");
+  const [gender, setGender] = useState("");
+  const [address, setAddress] = useState("");
   const { createUserAccount, updateUserAccount, signInWithGoogle, setLoading } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const Register = () => {
     const name = form.name.value;
     const image = form.image.files[0];
     const email = form.email.value;
+    setAddress(form.address.value);
+    console.log(address);
     const password = form.password.value;
 
     const formData = new FormData();
@@ -41,7 +44,7 @@ const Register = () => {
               updateUserAccount(name, data.data.url)
                 .then(() => {
                   toast.success("Photo and Name updated");
-                  setAuthToken(user, role);
+                  setAuthToken(user, gender, address);
                   navigate(from, { replace: true });
                 })
                 .catch((err) => {
@@ -63,7 +66,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Login success with google");
-        setAuthToken(user, role);
+        setAuthToken(user, address);
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -134,7 +137,7 @@ const Register = () => {
               </label>
               <input
                 required
-                type="address"
+                type="text"
                 name="address"
                 id="address"
                 placeholder="Enter Your Address Here"
@@ -169,7 +172,7 @@ const Register = () => {
                 </label>
                 <select
                   name="gender"
-                  onChange={(e) => setRole(e.target.value)}
+                  onChange={(e) => setGender(e.target.value)}
                   className="select w-full"
                 >
                   <option value="female">female</option>

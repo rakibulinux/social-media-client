@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import About from "../pages/About/About";
+import UpdateAbout from "../pages/About/UpdateAbout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Friends from "../pages/Friends/Friends";
 import Home from "../pages/Home/Home/Home";
@@ -11,6 +12,7 @@ import PostDetails from "../pages/PostDetails/PostDetails";
 import Profile from "../pages/Profile/Profile";
 import Register from "../pages/Register/Register";
 import Settings from "../pages/Settings/Settings";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -46,7 +48,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <PrivateRoute>
+            <About />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/about/edit/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateAbout />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/profile",
