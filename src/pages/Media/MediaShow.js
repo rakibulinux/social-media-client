@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import Comments from "../../components/Comments";
 import PrimaryButton from "../../components/PrimaryButton";
 
-const MediaShow = ({
-  post,
-  handleReactionUpdate,
-  increaseReaction,
-  newReaction,
-}) => {
+const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
   const { _id, name, postDetails, picture, photoURL, publishedDate, reaction } =
     post;
   return (
@@ -43,7 +38,7 @@ const MediaShow = ({
       <div className="flex gap-4 my-4">
         <button
           onClick={() => {
-            increaseReaction();
+            increaseReaction(reaction);
             handleReactionUpdate(_id);
           }}
           className="btn bg-blue-500 hover:bg-blue-700 border-none"
@@ -57,7 +52,7 @@ const MediaShow = ({
           Care
         </button>
       </div>
-      <Comments />
+      <Comments _id={_id} />
     </div>
   );
 };

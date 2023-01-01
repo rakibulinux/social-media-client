@@ -17,7 +17,7 @@ const Media = () => {
     },
   });
   const [newReaction, setNewReaction] = useState(1);
-  const increaseReaction = () => setNewReaction(newReaction + 1);
+  const increaseReaction = (reaction) => setNewReaction(newReaction + reaction);
 
   const handleReactionUpdate = (id) => {
     fetch(`${process.env.REACT_APP_API_URL}/update-post/${id}`, {
@@ -31,6 +31,7 @@ const Media = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
+          console.log(data);
           toast.success("Love react palce");
           refetch();
         }

@@ -10,7 +10,7 @@ const MostPopular = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["mostpopular"],
     queryFn: async () => {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/mostpopular`);
       const data = res.json();

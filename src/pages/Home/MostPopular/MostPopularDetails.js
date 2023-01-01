@@ -55,7 +55,7 @@ const MostPopularDetails = ({
           Care
         </button>
       </div>
-      <Comments />
+      <Comments _id={_id} />
     </div>
   );
 };

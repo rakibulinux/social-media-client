@@ -7,23 +7,25 @@ import { AuthContext } from "../contexts/AuthProvider";
 import Comment from "./Comment";
 import PrimaryButton from "./PrimaryButton";
 
-const Comments = () => {
+const Comments = ({ _id }) => {
   const { user } = useContext(AuthContext);
   const date = format(new Date(), "PP");
-
   const { register, handleSubmit } = useForm({
     defaultValues: {
       date,
     },
   });
-  const { data: comments } = useQuery({
-    queryKey: ["comments"],
+  const { data: comments, refetch } = useQuery({
+    queryKey: [`comments?postId=${_id}`],
     queryFn: async () => {
-      const req = await fetch(`${process.env.REACT_APP_API_URL}/comments`);
+      const req = await fetch(
+        `${process.env.REACT_APP_API_URL}/comments?postId=${_id}`
+      );
       const data = await req.json();
       return data;
     },
   });
+  // console.log(_id);
   const onSubmit = (data) => {
     const commentInfo = {
       name: user?.displayName,
@@ -31,6 +33,7 @@ const Comments = () => {
       date,
       picture: user.photoURL,
       comment: data?.comment,
+      postId: _id,
     };
 
     fetch(`${process.env.REACT_APP_API_URL}/comments`, {
@@ -43,7 +46,11 @@ const Comments = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        refetch();
         toast.success(`${user?.displayName} added a new comment`);
+      })
+      .catch((er) => {
+        toast.error(er.message);
       });
   };
   return (
