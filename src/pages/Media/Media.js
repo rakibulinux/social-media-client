@@ -17,7 +17,7 @@ const Media = () => {
     },
   });
   const [newReaction, setNewReaction] = useState(1);
-  const increaseReaction = (reaction) => setNewReaction(newReaction + reaction);
+  const increaseReaction = () => setNewReaction(newReaction + 1);
 
   const handleReactionUpdate = (id) => {
     fetch(`${process.env.REACT_APP_API_URL}/update-post/${id}`, {

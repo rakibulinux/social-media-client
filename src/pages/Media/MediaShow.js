@@ -38,7 +38,7 @@ const MediaShow = ({ post, handleReactionUpdate, increaseReaction }) => {
       <div className="flex gap-4 my-4">
         <button
           onClick={() => {
-            increaseReaction(reaction);
+            increaseReaction();
             handleReactionUpdate(_id);
           }}
           className="btn bg-blue-500 hover:bg-blue-700 border-none"
