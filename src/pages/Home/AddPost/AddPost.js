@@ -7,6 +7,7 @@ import { AuthContext } from "../../../contexts/AuthProvider";
 import Spinner from "../../../components/Spinner";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
+
 const AddPost = () => {
   const { user, isLoading } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_IMG_BB_KEY;
@@ -75,9 +76,13 @@ const AddPost = () => {
         </>
       </div>
       <>
-        <figure className="avatar right-[16rem] top-14 w-8 h-8">
+        <figure className="avatar sm:right-[10rem] md:right-[18rem] top-14 w-8 h-8 rounded-full">
           {user ? (
-            <img src={user?.photoURL} alt="profile img" />
+            <img
+              src={user?.photoURL}
+              className="rounded-full"
+              alt="profile img"
+            />
           ) : (
             <FaUserAlt />
           )}
